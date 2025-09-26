@@ -8,12 +8,12 @@ namespace DemExamApp.Entities
 {
     public class ProductType
     {
-        public ProductType() 
+        public ProductType()
         {
-            Title=string.Empty;
+            Title = string.Empty;
             Ratio = 0.0M;
         }
-        public ProductType(string title, decimal ratio) 
+        public ProductType(string title, decimal ratio)
         {
             Title = title;
             Ratio = ratio;

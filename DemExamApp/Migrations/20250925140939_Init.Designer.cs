@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemExamApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250924090056_TestDb")]
-    partial class TestDb
+    [Migration("20250925140939_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

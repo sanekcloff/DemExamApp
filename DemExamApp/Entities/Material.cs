@@ -42,6 +42,32 @@ namespace DemExamApp.Entities
 
         public ICollection<Supplier> Supplier { get; set; }
 
+
+        public string CombinedTypeAndTitle => $"{MaterialType.Title} | {Title}";
+        public string MinCountText => $"Минимальное количество: {MinCount} {UnitOfMeasurement}";
+        public string CountOnStorageText => $"Количество на складе: {CountOnStorage} {UnitOfMeasurement}";
+        public string CombinedPriceAndUnit => $"Цена: {PricePerUnit:C} / Единица измерения: {UnitOfMeasurement}";
+
+        private decimal NeedToBuyCost()
+        {
+            if (CountOnStorage >= MinCount) return 0;
+            var needToBuy = MinCount - CountOnStorage;
+
+            if (needToBuy % CountInPackage == 0) 
+            {
+                var actualQuantity = needToBuy;
+                int packagesCount = (int)(needToBuy / CountInPackage);
+                return actualQuantity * PricePerUnit;
+            }
+            else
+            {
+                int packagesCount = (int)Math.Ceiling(needToBuy / CountInPackage);
+                var actualQuantity = packagesCount * CountInPackage;
+                return actualQuantity * PricePerUnit;
+            }
+        }
+        public string BatchOfMaterials => $"Стоимость партии: {NeedToBuyCost():C}";
+
         public override string ToString() => $"{Id}: {Title} ({MaterialType}) - Price per unit: {PricePerUnit:C}, Count on storage: {CountOnStorage} {UnitOfMeasurement}, Min count: {MinCount} {UnitOfMeasurement}, {CountInPackage} {UnitOfMeasurement}";
     }
 }

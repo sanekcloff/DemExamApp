@@ -13,10 +13,10 @@ namespace DemExamApp.Entities
             Title = string.Empty;
             Percent = 0.0M;
         }
-        public MaterialType(string title, decimal ratio)
+        public MaterialType(string title, decimal percent)
         {
             Title = title;
-            Percent = ratio;
+            Percent = percent;
         }
         public int Id { get; set; }
         public string Title { get; set; }
